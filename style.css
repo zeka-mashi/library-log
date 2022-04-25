@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Noto+Sans&family=Sirin+Stencil&display=block');
 * {
     margin: 0;
 }
@@ -22,35 +23,66 @@ body {
 }
 
 .header {
+    font-family: 'Sirin Stencil', cursive;
     text-align: center;
+    padding: 35px 0;
+    text-shadow: 3px 3px 20px black, -3px -3px 20px black, -3px 3px 20px black, 3px -3px 20px black;
+}
+
+.add-btn {
+    font-family: 'Sirin Stencil', cursive;
+    position: absolute;
+    display: flex;
+    right: 5%;
+    top: 50px;
+    height: 35px;
+    border-radius: 3px;
+    background-color: #ffffff8c;
+    border: 1px solid white;
+    width: 125px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: black;
+}
+
+.add-btn p {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .book-container {
     display: flex;
-    flex: 1;
-    gap: 5%;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
 .book-item {
     display: flex;
     flex-direction: column;
     width: 200px;
-    height: 200px;
-    background-color: #ffffff8c;
+    border: 3px solid #0000008c;
+    background-color: #0000008c;
     padding: 10px;
     border-radius: 10px;
-    margin: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .book-item p {
+    font-family: 'Noto Sans', sans-serif;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 3px black, -1px -1px 3px black;
+    color: white;
+    text-shadow: 1px 1px 10px white, -1px -1px 10px white;
 }
 
 .book-item p::before {
-    font-size: 10px;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 12px;
     margin-bottom: 3px;
     display: block;
+    text-shadow: none;
 }
 
 .book-item p:first-child::before {
@@ -67,4 +99,22 @@ body {
 
 .book-item p:nth-child(4)::before {
     content: "Status";
+}
+
+.book-btn-wrapper {
+    display: flex;
+    margin-top: auto;
+}
+
+.book-btn {
+    cursor: pointer;
+    color: lightgray;
+}
+
+.book-btn:hover {
+    color: white;
+}
+
+.book-btn:nth-child(1) {
+    margin-right: auto;
 }
