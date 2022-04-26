@@ -18,6 +18,62 @@ body {
     z-index: -1;
 }
 
+.book-modal {
+    font-family: 'Electrolize', sans-serif;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 60%;
+    left: 50%;
+    width: 400px;
+    height: 500px;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #dbdbdb;
+    border: 3px solid black;
+    text-align: center;
+}
+
+.modal-wrapper {
+    margin: 10px;
+}
+
+.book-modal .open {
+    top: 50%;
+}
+
+form {
+    margin: 20px 10px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+.input-wrapper label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.input-wrapper input {
+    padding: 8px 2px;
+    width: 300px;
+    background-color: #dbdbdb;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: darkgray;
+}
+
+.input-wrapper input[type="number"] {
+    width: 100px;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-bottom-color: gray;
+}
+
 .container {
     color: white;
 }
@@ -34,7 +90,7 @@ body {
     position: absolute;
     display: flex;
     right: 5%;
-    top: 50px;
+    top: 60px;
     height: 35px;
     border-radius: 3px;
     background-color: #ffffff8c;
@@ -49,6 +105,11 @@ body {
 .add-btn p {
     font-size: 18px;
     font-weight: bold;
+}
+
+.add-btn:hover {
+    background-color: #ffffffbf;
+    cursor: pointer;
 }
 
 .book-container {
