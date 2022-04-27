@@ -59,7 +59,19 @@ function updateDisplay() {
     }
 }
 
-updateDisplay()
+document.addEventListener('DOMContentLoaded', function() {
+    updateDisplay();
+    const addBookBtn = document.getElementsByClassName("add-btn")[0];
+    addBookBtn.addEventListener("click", function() {
+        const bookModal = document.getElementsByClassName("book-modal")[0];
+        const bookContainer = document.getElementsByClassName("book-container")[0];
+        bookModal.classList.toggle("open");
+        bookContainer.classList.toggle("no-click");
+        bookContainer.classList.toggle("nos");
+    })
+    const addToLib = document.getElementById("add-to-lib");
+    addToLib.addEventListener("click", () => addBookToLibrary())
+}, false);
 
 function Book(title, author, pages, read) {
     this.title = title;

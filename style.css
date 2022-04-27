@@ -18,6 +18,18 @@ body {
     z-index: -1;
 }
 
+.no-click {
+    pointer-events: none;
+}
+
+.nos {
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
 .book-modal {
     font-family: 'Electrolize', sans-serif;
     position: absolute;
@@ -25,19 +37,25 @@ body {
     flex-direction: column;
     top: 60%;
     left: 50%;
-    width: 400px;
-    height: 500px;
+    width: 350px;
+    height: 450px;
     transform: translateX(-50%) translateY(-50%);
     background-color: #dbdbdb;
     border: 3px solid black;
     text-align: center;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .modal-wrapper {
     margin: 10px;
+    flex: 1;
 }
 
-.book-modal .open {
+.open {
+    transition: all 0.5s;
+    visibility: visible;
+    opacity: 1;
     top: 50%;
 }
 
@@ -49,6 +67,15 @@ form {
     display: flex;
     flex-direction: column;
     margin-bottom: 35px;
+}
+
+.input-wrapper>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper>div:last-child {
+    margin: 0 auto;
 }
 
 .input-wrapper label {
@@ -67,11 +94,62 @@ form {
 
 .input-wrapper input[type="number"] {
     width: 100px;
+    -moz-appearance: textfield;
 }
 
-.input-wrapper input:focus {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-wrapper input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+label[for="book.status"] {
+    cursor: pointer;
+}
+
+input {
     outline: none;
+}
+
+input:invalid {
+    border-bottom-color: red;
+}
+
+.input-wrapper input:not(:invalid):focus {
     border-bottom-color: gray;
+}
+
+.input-wrapper:nth-child(3) {
+    flex-direction: row;
+}
+
+.status-wrapper {
+    display: flex;
+    margin: auto;
+}
+
+.input-submit {
+    margin: auto 0;
+}
+
+.input-submit input {
+    cursor: pointer;
+    border-style: none;
+    padding: 15px 40px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #c48660;
+    width: 100%;
+    color: white;
+}
+
+.input-submit input:hover {
+    background-color: #e09261;
 }
 
 .container {
