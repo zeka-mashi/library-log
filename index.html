@@ -9,15 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <script>
+        0
+    </script>
     <title>The Library</title>
 </head>
 
 <body>
-    <div class="background"></div>
     <div class="book-modal">
         <div class="modal-wrapper nos">
             <h2>Add New Book</h2>
-            <form>
+            <form id="bookForm">
                 <div class="input-wrapper">
                     <label for="book.name">Book Name</label>
                     <input type="text" id="book.name" name="book.name">
@@ -39,11 +41,10 @@
                         </div>
                     </div>
                 </div>
-
             </form>
         </div>
         <div class="input-submit">
-            <input type="button" id="add-to-lib" value="Add to Library">
+            <input type="submit" form="bookForm" value="Add to Library">
         </div>
     </div>
     <div class="container">
