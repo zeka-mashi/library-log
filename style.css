@@ -43,10 +43,23 @@ body {
 }
 
 .open {
-    transition: all 0.5s;
+    transition: all 0.3s;
     visibility: visible;
     opacity: 1;
     transform: translate3d(-50%, -60%, 0px);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.close-modal:hover {
+    text-shadow: 0px 0px 3px black;
+    cursor: pointer;
 }
 
 form {
@@ -106,7 +119,7 @@ input {
     outline: none;
 }
 
-input:invalid {
+input:not(.hide-invalid):invalid {
     border-bottom-color: red;
 }
 
@@ -148,7 +161,7 @@ input:invalid {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100%;
+    min-height: 100%;
 }
 
 .header {
