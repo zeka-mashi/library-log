@@ -5,36 +5,36 @@ let iconBookUpdate = '<svg style="width:24px;height:24px" viewBox="0 0 24 24"><p
 let iconBookRemove = '<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M13 19C13 20.1 13.3 21.12 13.81 22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H7V9L9.5 7.5L12 9V2H18C19.1 2 20 2.89 20 4V13.09C19.67 13.04 19.34 13 19 13C15.69 13 13 15.69 13 19M22.54 16.88L21.12 15.47L19 17.59L16.88 15.47L15.47 16.88L17.59 19L15.47 21.12L16.88 22.54L19 20.41L21.12 22.54L22.54 21.12L20.41 19L22.54 16.88Z" /></svg>';
 
 function updateDisplay() {
-    var booksInDisplay = document.getElementsByClassName("book-item");
-    var arr = [];
+    const booksInDisplay = document.getElementsByClassName("book-item");
+    let arr = [];
     for (let i = 0; i < booksInDisplay.length; i++) {
         arr.push(booksInDisplay[i].dataset.title);
     }
     for (let i = 0; i < myLibrary.length; i++) {
         if (!(arr.includes(myLibrary[i].title))) {
             //add book
-            var newBookItem = document.createElement("div")
+            let newBookItem = document.createElement("div")
             newBookItem.classList.add("book-item")
             newBookItem.setAttribute("data-title", myLibrary[i].title)
-            var pBookName = document.createElement("p")
+            let pBookName = document.createElement("p")
             pBookName.textContent = myLibrary[i].title
             newBookItem.appendChild(pBookName)
-            var pAuthor = document.createElement("p")
+            let pAuthor = document.createElement("p")
             pAuthor.textContent = myLibrary[i].author
             newBookItem.appendChild(pAuthor)
-            var pPages = document.createElement("p")
+            let pPages = document.createElement("p")
             pPages.textContent = myLibrary[i].pages
             newBookItem.appendChild(pPages)
-            var pStatus = document.createElement("p")
+            let pStatus = document.createElement("p")
             pStatus.textContent = "Not Read"
             if (myLibrary[i].read) {
                 pStatus.textContent = "Read"
             }
             newBookItem.appendChild(pStatus)
 
-            var bookBtnWrapper = document.createElement("div")
+            let bookBtnWrapper = document.createElement("div")
             bookBtnWrapper.classList.add("book-btn-wrapper")
-            var btnStatus = document.createElement("div")
+            let btnStatus = document.createElement("div")
             btnStatus.innerHTML = iconBookUpdate;
             btnStatus.classList.add("book-btn")
             btnStatus.setAttribute("title", "Update book status")
@@ -42,7 +42,7 @@ function updateDisplay() {
                 changeStatus(this)
             })
             bookBtnWrapper.append(btnStatus)
-            var btnRemove = document.createElement("div")
+            let btnRemove = document.createElement("div")
             btnRemove.innerHTML = iconBookRemove;
             btnRemove.classList.add("book-btn")
             btnRemove.setAttribute("title", "Remove book")
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addToLib = document.getElementsByTagName("form")[0];
     addToLib.addEventListener("submit", (e) => addBookToLibrary(e));
 
-    const inputs = document.getElementsByClassName("hide-invalid");
+    const inputs = document.getElementsByClassName("form-input");
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("blur", function() {
             this.classList.remove("hide-invalid");
@@ -94,11 +94,11 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(e) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());
-    var bookName = "";
-    var authorName = "";
-    var totalPages = 1;
-    var bookStatus = false;
-    for (var key in data) {
+    let bookName = "";
+    let authorName = "";
+    let totalPages = 1;
+    let bookStatus = false;
+    for (let key in data) {
         if (data.hasOwnProperty(key)) {
             switch (key) {
                 case "book.name":
@@ -124,30 +124,32 @@ function addBookToLibrary(e) {
         myLibrary.push(new Book(bookName, authorName, totalPages, bookStatus));
         updateDisplay();
     } else {
+        let alreadyInLibrary = false;
         for (let i = 0; i < myLibrary.length; i++) {
-            if (!(bookName.includes(myLibrary[i].title))) {
-                const inputs = document.getElementsByClassName("hide-invalid");
-                for (let i = 0; i < inputs.length; i++) {
-                    inputs[i].classList.add("hide-invalid");
-                }
-                document.getElementsByTagName("form")[0].reset();
-                myLibrary.push(new Book(bookName, authorName, totalPages, bookStatus));
-                updateDisplay();
-                break;
-            } else {
+            if (myLibrary[i].title.includes(bookName)) {
                 alert("'" + bookName + "' is already part of your library!");
+                alreadyInLibrary = true;
                 break;
             }
+        }
+        if (!alreadyInLibrary) {
+            document.getElementsByTagName("form")[0].reset();
+            const inputs = document.getElementsByClassName("form-input");
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].classList.add("hide-invalid");
+            }
+            myLibrary.push(new Book(bookName, authorName, totalPages, bookStatus));
+            updateDisplay();
         }
     }
 }
 
 function changeStatus(e) {
-    var elm = e.parentElement.parentElement;
+    let elm = e.parentElement.parentElement;
     myLibrary = myLibrary.filter(function(book) {
         if (book.title === elm.dataset.title) {
             book.read = !(book.read)
-            var newStatus = "Not Read";
+            let newStatus = "Not Read";
             if (book.read) {
                 newStatus = "Read";
             }
@@ -155,10 +157,11 @@ function changeStatus(e) {
         }
         return true;
     })
+    localStorage.setItem("shelf", JSON.stringify(myLibrary));
 }
 
 function removeBook(e) {
-    var elm = e.parentElement.parentElement;
+    let elm = e.parentElement.parentElement;
     idx = [...elm.parentElement.children].indexOf(elm);
     if (idx > -1) {
         myLibrary.splice(idx, 1);
