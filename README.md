@@ -9,4 +9,4 @@ A book-logging project as part of TOP.
 
 ## Demo
 
-Demo this calculator [here](https://zeka-mashi.github.io/library-log/).
+Demo this [here](https://zeka-mashi.github.io/library-log/).
