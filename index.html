@@ -23,16 +23,16 @@
             <form id="bookForm">
                 <div class="input-wrapper">
                     <label for="book.name">Book Name</label>
-                    <input class="form-input hide-invalid" type="text" id="book.name" name="book.name" maxlength="40" title="Enter the name of the book" required>
+                    <input class="form-input hide-invalid" type="text" id="book.name" name="book.name" maxlength="40" title="Enter the name of the book" required oninvalid="this.setCustomValidity('Enter the name of the book')" oninput="setCustomValidity('')">
                 </div>
                 <div class="input-wrapper">
                     <label for="author.name">Author Name</label>
-                    <input class="form-input hide-invalid" type="text" id="author.name" name="author.name" maxlength="30" title="Enter the author's name" required>
+                    <input class="form-input hide-invalid" type="text" id="author.name" name="author.name" maxlength="30" title="Enter the author's name" required oninvalid="this.setCustomValidity('Enter the author\'s name')" oninput="setCustomValidity('')">
                 </div>
                 <div class="input-wrapper">
                     <div>
                         <label for="book.pages">Total Pages</label>
-                        <input class="form-input hide-invalid" type="number" id="book.pages" name="book.pages" min="1" max="9999" title="Enter number of pages (1-9999)" required>
+                        <input class="form-input hide-invalid" type="number" id="book.pages" name="book.pages" min="1" max="9999" title="Enter number of pages (1-9999)" required oninvalid="this.setCustomValidity('Enter number of pages (1-9999)')" oninput="setCustomValidity('')">
                     </div>
                     <div>
                         <label>Status</label>
